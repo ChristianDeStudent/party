@@ -12,6 +12,8 @@ public class HomeController {
     public String home(Model model){
         int myCalculatedValue = 34 * 62;
         model.addAttribute("myCalculatedValue", myCalculatedValue);
+        String appName = "Albania lover";
+        model.addAttribute("appName", appName);
         return "home";
     }
     @GetMapping("/about")
