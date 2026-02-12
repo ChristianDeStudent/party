@@ -1,10 +1,14 @@
 package be.thomasmore.party.controllers;
 
+import be.thomasmore.party.model.Venue;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
 import java.text.AttributedString;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 @Controller
 public class HomeController {
@@ -26,5 +30,26 @@ public class HomeController {
         model.addAttribute("myCity", myCity);
         return "about";
     }
+    @GetMapping("/pay")
+    public String pay(Model model){
+        // haal de huidige datum en tijd op
+        LocalDateTime nu = LocalDateTime.now();
+
+        // Berkenen de datum over 30 dagen
+        LocalDateTime vervaldatum = nu.plusDays(30);
+
+        //Definieer een formaat
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+
+        //Formatteer de datum naar een String
+        String geformatteerdeDatum = nu.format(formatter);
+        String geformatteerdeVervalDatum = vervaldatum.format(formatter);
+
+        // Variabelen toevoegen aan het model
+        model.addAttribute("vandaag", geformatteerdeDatum);
+        model.addAttribute("Uiterstedatum", geformatteerdeVervalDatum);
+        return "pay";
+    }
+
 
 }

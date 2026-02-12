@@ -2,12 +2,11 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>About me</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <title>Title</title>
     <link rel="stylesheet" type="text/css" media="all" th:href="@{/css/style.css}">
-
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
 </head>
-<body class="m-5">
+<body>
 <header>
     <nav class="navbar navbar-expand-sm bg-body-tertiary">
         <div class="container-fluid">
@@ -19,25 +18,26 @@
                     <li class="nav-item">
                         <a class="nav-link" th:href="@{/home}">Home</a>
                     </li>
+                    <li class="nav-item active" aria-current="page">
+                        <a class="nav-link" th:href="@{/venuedetails}">zaaldetails</a>
+                        </li>
                     <li class="nav-item">
-                        <a class="nav-link" th:href="@{venuedetails}">zaaldetails</a>
+                        <a class="nav-link"  th:href="@{about}">About me</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" th:href="@{about}">About me</a>
-                    </li>
+
                 </ul>
             </div>
         </div>
     </nav>
 </header>
-<h1>Over mij</h1>
-    <ol class ="orderedlist">
-        <li th:text="${myName}">myName</li>
-        <li th:text="${myStreet}">myStreet</li>
-        <li th:text="${myCity}">myCity</li>
-    </ol>
-    <a th:href="@{/home}">Home</a>
-<p><strong>Christian</strong> is een hele schone jongeman met een hart van goud, de wijsheid van Solomon en de kracht van Hercules.</p>
+<!--Dit typen we dan als we zeggen dat we willen werken met onze object--->
+<main class="container" th:object="${venue}">
+    <!---Dit betekent dat het model-attribute met key venue actief is in deze html-element(page)--->
+    <h2 th:text="*{venueName}">Hier komt de naam</h2>
+    <!---@ vertelt thymeleaf maak hier een geldige url van -->
+    <!--* vertelt thymeleaf: kijk in het geselecteerde object (venue)--->
+    <a th:href="@{*{linkMoreInfo}}">zie de link</a>
+</main>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
 </body>
 </html>
