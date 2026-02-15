@@ -15,6 +15,10 @@ public class Client {
     private double totalAmount;
     private double discountTaken;
 
+    public Client(){
+
+    }
+
     public Integer getId() {
         return id;
     }
