@@ -1,9 +1,6 @@
 package be.thomasmore.party.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
 //Dit is niet zomaar een klas, dit is een database-tabel
 //Standaard maakt JPA een tabel aan met de naam Venue
@@ -14,14 +11,93 @@ public class Venue {
     //@Id markeert private integer id als de unieke sleutel
     //Hier mee kan de database exact een specifieke venue terugvinden, zelf asl ze dezelfde naam hebben
     @Id
+
     // Dit is de "automaat" van je database
     //Zonder dit zou ik altijd zelf een nummer moeten bedenken
     //Identityt zegt:"Regel jij het nummeren maar." de database telt dan zelf telkens +1 bij elke nieuwe rij
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
+    @Column(name = "VenueName")
     private String venueName;
+    @Column(name = "LinkMoreInfo")
     private String linkMoreInfo;
+    private int capacity;
+    private boolean foodProvided;
+    private boolean indoor;
+    private boolean outdoor;
+    private boolean freeParkingAvailable;
+    private String city;
+    private int distanceFromPublicTransportInKm;
+    private String imageUrl;
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public int getCapacity() {
+        return capacity;
+    }
+
+    public void setCapacity(int capacity) {
+        this.capacity = capacity;
+    }
+
+    public boolean isFoodProvided() {
+        return foodProvided;
+    }
+
+    public void setFoodProvided(boolean foodProvided) {
+        this.foodProvided = foodProvided;
+    }
+
+    public boolean isIndoor() {
+        return indoor;
+    }
+
+    public void setIndoor(boolean indoor) {
+        this.indoor = indoor;
+    }
+
+    public boolean isOutdoor() {
+        return outdoor;
+    }
+
+    public void setOutdoor(boolean outdoor) {
+        this.outdoor = outdoor;
+    }
+
+    public boolean isFreeParkingAvailable() {
+        return freeParkingAvailable;
+    }
+
+    public void setFreeParkingAvailable(boolean freeParkingAvailable) {
+        this.freeParkingAvailable = freeParkingAvailable;
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
+    }
+
+    public int getDistanceFromPublicTransportInKm() {
+        return distanceFromPublicTransportInKm;
+    }
+
+    public void setDistanceFromPublicTransportInKm(int distanceFromPublicTransportInKm) {
+        this.distanceFromPublicTransportInKm = distanceFromPublicTransportInKm;
+    }
+
+    public String getImageUrl() {
+        return imageUrl;
+    }
+
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
+    }
 
     public Integer getId() {
         return id;
