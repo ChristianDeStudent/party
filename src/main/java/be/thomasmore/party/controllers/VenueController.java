@@ -41,6 +41,13 @@ public class VenueController {
         // Dit is de naam van de html page die we hebben
     }
 
+    @GetMapping("/venuelist")
+    public String venueList(Model model){
+        // Haal alle venues op uit de database
+        Iterable<Venue> venues = venueRepository.findAll();
+        model.addAttribute("venues", venues);
+        return "venuelist";
+    }
 
 
 }
