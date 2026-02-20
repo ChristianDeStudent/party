@@ -5,6 +5,8 @@ import be.thomasmore.party.repositories.VenueRepository;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+
 import java.util.Optional;
 
 
@@ -17,11 +19,13 @@ public class VenueController {
         this.venueRepository = venueRepository;
     }
 
-    @GetMapping("/venuedetails")
-    public String venueDetails(Model model){
+    // we schrijven nu een extra stukje bij onze url
+    @GetMapping("/venuedetails/{id}")
+    // We voegen nu een nieuwe parameter toe @PathVariable int id
+    // de id in de parameter moet hetzelfde zijn als de id in het url
+    public String venueDetails(Model model, @PathVariable int id){
         // Gebruik venueFromDb (met 'Db' op het einde)
-        Optional<Venue> venueFromDb = venueRepository.findById(1);
-
+        Optional<Venue> venueFromDb = venueRepository.findById(id);
         if (venueFromDb.isPresent()) {
             model.addAttribute("venue", venueFromDb.get());
         }
