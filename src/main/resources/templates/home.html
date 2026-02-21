@@ -8,28 +8,8 @@
 
 </head>
 <body class="m-2">
-<header class="bg-dark">
-    <nav class="navbar navbar-expand-sm bg-body-tertiary">
-        <div class="container-fluid bg-dark">
-            <a class="navbar-brand text-warning">Christian</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span></button>
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                    <li class="nav-item">
-                        <a class="nav-link active text-white" aria-current="page" th:href="@{/home}">Home</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link text-white" th:href="@{/venuelist}">zaaldetails</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link text-white"  th:href="@{about}">About me</a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </nav>
-</header>
+<!---header--->
+<div th:replace="~{fragments/header :: navbar}"></div>
     <h1>Hello Bolivia</h1>
 <p th:text="${myCalculatedValue}">myCalculatedValue</p>
     <p> <strong>Gabriel</strong> kan het niet vinden</p>
@@ -41,11 +21,8 @@
     <a th:href="${about}">About me</a>
 
 <!---Footer--->
-<div class="container fixed-bottom">
-    <footer class="py-3 my-4">
-        <p class="text-center text-body-secondary">© Thomas More</p>
-    </footer>
-</div>
+<div th:replace="~{fragments/footer :: footer}"></div>
+
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
 </body>
 </html>
