@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" type="text/css" media="all" th:href="@{/css/style.css}">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+</head>
+<body>
+<ul class="navbar-nav me-auto mb-2 mb-lg-0" th:fragment="current">
+    <li class="nav-item">
+        <a th:class="${(currentUrl ?: '') == '/' ? 'nav-link active' : 'nav-link'}"
+           th:href="@{/}"
+           class="nav-link"><p class="text-light p-0 m-0">home</p></a>
+    </li>
+    <li class="nav-item">
+        <a th:class="${currentUrl?.startsWith('/venuelist') ? 'nav-link active' : 'nav-link'}"
+           th:href="@{/venuelist}"
+           class="nav-link text-light"><p class="text-light m-0 p-0">Zaaldetails</p></a>
+    </li>
+    <li class="nav-item ">
+        <a th:class="${currentUrl == '/about' ? 'nav-link active' : 'nav-link'}"
+           th:href="@{/about}"
+           class="nav-link "><p class="text-light m-0 p-0">over mij</p></a>
+    </li>
+</ul>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+</body>
+</html>
