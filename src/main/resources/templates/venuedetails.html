@@ -7,22 +7,22 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
 </head>
 <body>
-<header>
+<header class="bg-dark">
     <nav class="navbar navbar-expand-sm bg-body-tertiary">
-        <div class="container-fluid">
-            <a class="navbar-brand">Christian</a>
+        <div class="container-fluid bg-dark">
+            <a class="navbar-brand text-warning">Christian</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span></button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link" th:href="@{/home}">Home</a>
+                        <a class="nav-link text-white" th:href="@{/home}">Home</a>
                     </li>
                     <li class="nav-item active" aria-current="page">
-                        <a class="nav-link" th:href="@{/venuelist}">zaaldetails</a>
+                        <a class="nav-link text-white" th:href="@{/venuelist}">zaaldetails</a>
                         </li>
                     <li class="nav-item">
-                        <a class="nav-link"  th:href="@{about}">About me</a>
+                        <a class="nav-link text-white"  th:href="@{about}">About me</a>
                     </li>
 
                 </ul>
@@ -31,15 +31,25 @@
     </nav>
 </header>
 <!--Dit typen we dan als we zeggen dat we willen werken met onze object--->
-<main class="container" th:object="${venue}">
+<main class="container" th:object="${venue}" th:if="${venue}">
     <!---Dit betekent dat het model-attribute met key venue actief is in deze html-element(page)--->
     <h2 th:text="*{venueName}">Hier komt de naam</h2>
     <!---@ vertelt thymeleaf maak hier een geldige url van -->
     <!--* vertelt thymeleaf: kijk in het geselecteerde object (venue)--->
     <a th:href="@{*{linkMoreInfo}}">zie de link</a>
 
+
+
+<!--    <img th:src="@{${venue.imageUrl}}" alt="Venue image" />-->
     <div class="container-fluid">
-        <img th:src="@{/Img/img.png}" th:alt="test" class="img-fluid mx-0 px-0">
+        <div class="col col-12 col-sm-6 col-md-6 col-lg-4 col-xl-4 mx-0 px-0">
+            <!---Het buitenste deel @: het vertelt thymeleaf:dit is een url-->
+            <!---het binneste deel $: het vertelt thymeleaf: ge naar mijn java-code en haal daar de waarde van deze variebele op-->
+            <!---de combinatie @{${}}--->
+            <!---1. thyme kijkt naar ${venue.imageUrl},hij gaa naar de java-object(venue),roept getimageurl() aan en krijgt de string van de img--->
+            <!---2.het buitenste.nu staat er eigenlijk @{img/zaal1.jpg}--->
+            <!---3. thyme maakt er een officiele web-adres van--->
+            <img th:src="@{${venue.imageUrl}}" alt="Venue image" class="img-fluid mx-0 px-0">        </div>
         <h3>Faciliteiten</h3>
         <div class="row">
             <!---Ik vraag hiermee een variabele op die rechtstreeks vanuit je javacontroller aan het model is toegevoegd.-->
@@ -56,14 +66,17 @@
             <div class="col border" th:text="'gratis parking: ' + (${venue.freeParkingAvailable} ? 'ja' : 'nee')">gratis parking: ja</div>
         </div>
     </div>
-    <div th:if="${venue == null}">
-        <p>Geen venue gevonden met dit ID</p>
-    </div>
+
+
     <br/>
     <a href="/venuelist">Terug naar overzicht</a>
 
 </main>
-
+<main class="container" th:object="${venue}" th:unless="${venue}">
+    <p>geen geldige zaal gekozen</p>
+    <br/>
+    <a href="/venuelist">Terug naar overzicht</a>
+</main>
 
 <!---Footer--->
 <div class="container fixed-bottom">
