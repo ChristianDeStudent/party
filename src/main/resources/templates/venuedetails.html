@@ -30,6 +30,12 @@
         </div>
     </nav>
 </header>
+<main class="container" th:object="${venue}" th:unless="${venue}">
+    <p>geen geldige zaal gekozen</p>
+    <br/>
+    <a href="/venuelist">Terug naar overzicht</a>
+</main>
+
 <!--Dit typen we dan als we zeggen dat we willen werken met onze object--->
 <main class="container" th:object="${venue}" th:if="${venue}">
     <!---Dit betekent dat het model-attribute met key venue actief is in deze html-element(page)--->
@@ -55,16 +61,23 @@
             <!---Ik vraag hiermee een variabele op die rechtstreeks vanuit je javacontroller aan het model is toegevoegd.-->
             <div class="col border" th:text="|max ${venue.capacity} personen|">max 150 personen</div>
             <!-- zoek in het hele model naar het object venue en pak daar de capacity aan--->
-            <div class="col border" th:text="|${venue.distanceFromPublicTransportInKm} van openbaar vervoer|">2km van openbaar vervoer</div>
+            <div class="col border" th:text="|${venue.distanceFromPublicTransportInKm} km van openbaar vervoer|">2km van openbaar vervoer</div>
         </div>
         <div class="row">
-            <div class="col border" th:text="'eten voorzien: ' + (${venue.foodProvided} ? 'ja' : 'nee')">eten voorzien: ja</div>
-            <div class="col border" th:text="'binnen: ' + (${venue.indoor} ? 'ja' : 'nee')">binnen : ja</div>
-        </div>
-        <div class="row">
-            <div class="col border" th:text="'buiten: ' + (${venue.outdoor} ? 'ja' : 'nee')">buiten : nee</div>
-            <div class="col border" th:text="'gratis parking: ' + (${venue.freeParkingAvailable} ? 'ja' : 'nee')">gratis parking: ja</div>
-        </div>
+<!--            <div class="col border" th:text="'eten voorzien: ' + (${venue.foodProvided} ? 'ja' : 'nee')">eten voorzien: ja</div>-->
+            <div class="col border" th:if="${venue.foodProvided}">eten is voorzien</div>
+            <div class="location check">
+<!--                <div class="col border" th:text="'binnen: ' + (${venue.indoor} ? 'ja' : 'nee')">binnen : ja</div>-->
+                <div class="col border" th:if="${venue.indoor && venue.outdoor}">binnen && buiten</div>
+            </div>
+            <div class="row">
+                <div class="col border" th:if="${venue.outdoor && !venue.indoor}">alleen buiten</div>
+                <div class="col border" th:if="${venue.indoor && !venue.outdoor}">alleen binnen</div>
+                <div class="col border" th:if="${venue.freeParkingAvailable}">gratis parking</div>
+<!--                <div class="col border" th:text="'buiten: ' + (${venue.outdoor} ? 'ja' : 'nee')">buiten : nee</div>-->
+<!--                <div class="col border" th:text="'gratis parking: ' + (${venue.freeParkingAvailable} ? 'ja' : 'nee')">gratis parking: ja</div>-->
+            </div></div>
+
     </div>
 
 
@@ -72,11 +85,7 @@
     <a href="/venuelist">Terug naar overzicht</a>
 
 </main>
-<main class="container" th:object="${venue}" th:unless="${venue}">
-    <p>geen geldige zaal gekozen</p>
-    <br/>
-    <a href="/venuelist">Terug naar overzicht</a>
-</main>
+
 
 <!---Footer--->
 <div class="container fixed-bottom">
