@@ -11,14 +11,30 @@
 <!---header--->
 <div th:replace="~{fragments/header :: navbar}"></div>
 <!-----Main----->
-<main class="container-fluid">
-    <h2>Zalen</h2>
-    <div class="row">
-        <div class="col border p-2 m-2"> <a href="/venuedetails/1">Zaal 1</a></div>
-        <div class="col border p-2 m-2"> <a href="/venuedetails/2">Zaal 2</a></div>
-        <div class="col border p-2 m-2"> <a href="/venuedetails/3">Zaal 3</a></div>
+<h2 class="m-2 p-2">Zalen</h2>
+<div class="row">
+    <div th:each="venue: ${venues}"
+    th:object="${venue}"
+    class="card-group col col-12 col-sm-6 col-md-4 col-lg-3 col-xl-2">
+        <div class="card m-1 p-2 text-center">
+            <a th:href="@{|/venuedetails/*{id}|}"
+            class="btn d-flex flex-column h-100">
+                <h3 th:text="*{venueName}"></h3>
+                <p th:text="|max ${venue.capacity} personen|"></p>
+                <img th:src="@{${venue.imageUrl}}" alt="Venue image" class="img-fluid mx-0 px-0">        </div>
+
+        </a>
+        </div>
     </div>
-</main>
+</div>
+<!--<main class="container-fluid">-->
+<!--    <h2>Zalen</h2>-->
+<!--    <div class="row">-->
+<!--        <div class="col border p-2 m-2"> <a href="/venuedetails/1">Zaal 1</a></div>-->
+<!--        <div class="col border p-2 m-2"> <a href="/venuedetails/2">Zaal 2</a></div>-->
+<!--        <div class="col border p-2 m-2"> <a href="/venuedetails/3">Zaal 3</a></div>-->
+<!--    </div>-->
+<!--</main>-->
 <!---Footer--->
 <div th:replace="~{fragments/footer :: footer}"></div>
 

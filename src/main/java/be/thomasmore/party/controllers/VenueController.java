@@ -48,7 +48,7 @@ public class VenueController {
     @GetMapping("/venuelist")
     public String venueList(Model model){
         // Haal alle venues op uit de database
-        Iterable<Venue> venues = venueRepository.findAll();
+       final Iterable<Venue> venues = venueRepository.findAll();
         model.addAttribute("venues", venues);
         return "venuelist";
     }
