@@ -1,8 +1,24 @@
-body{
-    background: green;
-}
+
 .orderedlist{
     background: aqua;
     font-family: "Arial Black";
     padding: 50px;
+}
+.home{
+    background-image: url("../img/home_party.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat; /* Zorgt dat de foto niet opnieuw begint onder de footer */
+    background-attachment: fixed; /* Houdt de foto op zijn plek */
+
+    /* Flexbox instellingen voor de body */
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    margin: 0;}
+
+/* Duw de footer naar de absolute bodem */
+footer {
+    margin-top:auto;
+    width: 100%;
 }
