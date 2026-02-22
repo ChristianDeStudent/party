@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" type="text/css" media="all" th:href="@{/css/style.css}">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+
+</head>
+<body>
+<!---Header----->
+<div th:replace="~{fragments/header :: navbar}"></div>
+<!---Main zonder artiest---->
+<main class="container" th:unless="${artist}">
+    <p>Geen geldige artiest gekozen.</p>
+    <br/>
+    <a th:href="@{/artistlist}" class="btn btn-secondary">Terug naar overzicht</a>
+</main>
+<!---Main met artiest---->
+<main class="container mt-5" th:if="${artist}" th:object="${artist}">
+    <div class="row">
+        <div class="col-12 col-md-6 order-2 order-md-1">
+            <h1 class="display-4" th:text="*{artistName}">Artiest naam</h1>
+            <p class="lead text-muted" th:text="*{genre}">Genre</p>
+        </div>
+    </div>
+
+    <div class="row align-items-start">
+        <div class="col-12 col-md-6 order-2 order-md-1">
+            <div class="card shadow-sm border-0 bg-light p-4">
+                <h3>Biografie</h3>
+                <p th:text="*{bio}">Hier komt de biografie tekst....</p>
+
+                <hr/>
+                <h5>Portfolio</h5>
+                <p th:text="*{portfolio}">Details</p>
+
+                <div class="mt-4">
+                    <a th:href="*{linkMoreInfo}" target="_blank" class="btn btn-outline-primary">
+                        Bezoek officiële website
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="col-12 col-md-6 order-1 order-md-2 mb-4 mb-md-0 text-center">
+            <img th:src="@{${artist.imageUrl}}"
+            th:alt="*{artistName}"
+            class="img-fluid rounded shadow mx-auto d-block">
+        </div>
+    </div>
+
+</main>
+
+<!---Footer----->
+<div th:replace="~{fragments/footer :: footer}"></div>
+
+<!--bootstrap js-->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+</body>
+</html>

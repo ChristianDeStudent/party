@@ -9,6 +9,7 @@
 <body>
 <!---header--->
 <div th:replace="~{fragments/header :: navbar}"></div>
+<!---main--->
 <main class="container" th:object="${venue}" th:unless="${venue}">
     <p>geen geldige zaal gekozen</p>
     <br/>

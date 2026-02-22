@@ -23,6 +23,11 @@
            th:href="@{/about}"
            class="nav-link "><p class="text-light m-0 p-0">over mij</p></a>
     </li>
+    <li class="nav-item">
+        <a th:class="${currentUrl != null && currentUrl == '/artistlist' ? 'nav-link active' : 'nav-link text-white'}"
+           th:href="@{/artistlist}"
+           class="nav-link"><p class="text-light p-0 m-0">Artiesten</p></a>
+    </li>
 </ul>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
