@@ -6,6 +6,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
 import java.text.AttributedString;
+import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -40,6 +41,12 @@ public class HomeController {
 
         //Definieer een formaat
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+
+        //4.7
+        DayOfWeek day = nu.getDayOfWeek();
+        //Deze regel code is een logische contorle om te bepalen ofd evariabele day in het weekend valt.
+        boolean isWeekend = (day == DayOfWeek.SATURDAY || day == DayOfWeek.SUNDAY);
+        model.addAttribute("isWeekend", isWeekend);
 
         //Formatteer de datum naar een String
         String geformatteerdeDatum = nu.format(formatter);

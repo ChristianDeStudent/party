@@ -11,6 +11,11 @@
     <div class="m-3 p-3 bg-info text-dark border border-3 border-success" th:text="${vandaag}">de datum van vandaag is geformatteerdeDatum</div>
 
     <div class="m-3 p-3 bg-info text dark border border-3 border-danger" th:text=" ${Uiterstedatum}">de uiterste datum van betalen is geformatteerdeVervalDatum</div>
+
+<!----th:if toont het element alleen als de waarde true is--->
+    <p th:if="${weekend}">Prettig weekend, je hebt het verdient</p>
+    <!----th:unless: is het omgekeerde; het toont het element alleen als de waarde false is---->
+    <p th:unless="${weekend}">Voor je het weet is het weekend!</p>
 </main>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
 </body>
