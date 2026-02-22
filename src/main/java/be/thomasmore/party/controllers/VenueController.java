@@ -33,13 +33,17 @@ public class VenueController {
         if (venueFromDb.isPresent()) {
             model.addAttribute("venue", venueFromDb.get());
         }
-        //Venue venue = new Venue();
-        // gebruik kleine letter 'venue'
-        //venue.setVenueName("De Roma");
-        //venue.setLinkMoreInfo("https://www.deroma.be");
 
-        // Stuurt het object naar de html
-       // model.addAttribute("venue", venue);
+        // Bereken het aantal zalen in de database voor de cirkel-logica
+        long nrOfVenues = venueRepository.count();
+
+        // Bereken prev en next (beginnend vanaf 1 zoals de tip zegt)
+        int prevId = (id > 1) ? id - 1 : (int) nrOfVenues;
+        int nextId = (id < nrOfVenues) ? id + 1 : 1;
+
+        model.addAttribute("prevVenues", prevId);
+        model.addAttribute("nextVenues", nextId);
+
         // vertel welke html file moet openen
         return "venuedetails";
         // Dit is de naam van de html page die we hebben

@@ -18,6 +18,17 @@
 
 <!--Dit typen we dan als we zeggen dat we willen werken met onze object--->
 <main class="container" th:object="${venue}" th:if="${venue}">
+   <div class="row mt-3 mb-3">
+       <div class="col-12 d-flex justify-content-between align-items-center">
+           <a th:href="@{|/venuedetails/${prevVenues}|}" class="btn btn-outline-primary shadow-sm">
+               &lt;
+           </a>
+           <h4 class="text-muted mb-0" th:text="*{city}">Stad</h4>
+           <a th:href="@{|/venuedetails/${nextVenues}}" class="btn btn-primary shadow-sm">
+               &gt;
+           </a>
+       </div>
+   </div>
     <!---Dit betekent dat het model-attribute met key venue actief is in deze html-element(page)--->
     <h2 th:text="*{venueName}">Hier komt de naam</h2>
     <!---@ vertelt thymeleaf maak hier een geldige url van -->
