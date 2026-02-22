@@ -20,7 +20,15 @@
 <main class="container mt-5" th:if="${artist}" th:object="${artist}">
     <div class="row">
         <div class="col-12 col-md-6 order-2 order-md-1">
-            <h1 class="display-4" th:text="*{artistName}">Artiest naam</h1>
+            <div class="col-12 d-flex justify-content-between align-items-center">
+                <a th:href="@{|/artistdetails/${prevArtist}|}" class="btn btn-outline-primary shadow-sm">
+                    &lt;
+                </a>
+                <h1 class="display-4" th:text="*{artistName}">Artiest naam</h1>
+                <a th:href="@{|/artistdetails/${nextArtist}|}"  class="btn btn-outline-primary shadow-sm">
+                    &gt;
+                </a>
+            </div>
             <p class="lead text-muted" th:text="*{genre}">Genre</p>
         </div>
     </div>

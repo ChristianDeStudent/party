@@ -25,6 +25,16 @@ public class ArtistController {
         if (artistDb.isPresent()) {
             model.addAttribute("artist", artistDb.get());
         }
+
+        //Bereken het aantal zalen in de databse voor de cirkel-logica
+        long nrOfArtists = artistRepository.count();
+
+        // Bereken prev en next
+        int prevId = (id > 1) ? id - 1 : (int) nrOfArtists;
+        int nextId = (id < nrOfArtists) ? id + 1 : 1;
+        model.addAttribute("prevArtist", prevId);
+        model.addAttribute("nextArtist", nextId);
+
         return "artistdetails";
     }
     @GetMapping("/artistlist")
