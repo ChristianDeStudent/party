@@ -99,6 +99,7 @@
     </dependencies>
 
     <build>
+        <!--dit is 37-->
         <resources>
             <resource>
                 <directory>src/main/resources</directory>
