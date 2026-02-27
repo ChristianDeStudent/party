@@ -12,7 +12,46 @@
 <div th:replace="~{fragments/header :: navbar}"></div>
 <!-----Main----->
 <h2 class="m-2 p-2">Zalen</h2>
-<p class="text-muted" th:text="|${venues.size()} zalen gevonden|"></p>
+<p class="text-muted ms-2" th:text="|${venues.size()} zalen gevonden|"></p>
+<!-- Button trigger modal -->
+<button type="button" class="btn btn-primary ms-2" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+filters
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="staticBackdropLabel">Filters</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <form th:action="@{/venuelist}">
+                <div class="modal-body mx-2">
+                    <div class="row border rounded mt-3">
+                        <div class="col-12 p-1">
+                            <h5>capaciteit</h5>
+                        </div>
+                        <div class="col-12 p-1">
+                            <label class="form-label">minimum</label>
+                            <div class="input-group">
+                                <input type="number" aria-label="minimum capaciteit" name="minCapacity"
+                                step="50">
+                                <span class="input-group-text">personen</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary">Zoek</button>
+                </div>
+            </form>
+
+        </div>
+    </div>
+</div>
 <div class="row">
     <div th:each="venue: ${venues}"
     th:object="${venue}"
