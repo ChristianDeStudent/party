@@ -2,10 +2,14 @@ package be.thomasmore.party.controllers;
 
 import be.thomasmore.party.model.Venue;
 import be.thomasmore.party.repositories.VenueRepository;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestAttribute;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.Optional;
 
@@ -13,6 +17,9 @@ import java.util.Optional;
 
 @Controller
 public class VenueController {
+    // LoggerFactory.getLogger(...): Dit is een 'fabriek' die een logger voor je maakt.
+    // VenueController .class:Hiermee vertel je de logger:"onthoud dat de berichten die ik stuur uti de klasse VenueController komen
+    private Logger logger = LoggerFactory.getLogger(VenueController.class);
     private final VenueRepository venueRepository;
 
     public  VenueController (VenueRepository venueRepository){
@@ -50,9 +57,21 @@ public class VenueController {
     }
 
     @GetMapping("/venuelist")
-    public String venueList(Model model){
+    //De query paramet is not required omdat minCapacity ook null kan zijn
+    // Daarom gebruiken we Integer inplaats van int
+    // Want een Integer kan wel null zijn.
+    public String venueList(Model model,
+                            @RequestParam(required = false) Integer minCapacity,
+                            @RequestParam(required = false) Integer maxCapacity) {
+        //Dit geeft aan dat het om een informatief bericht gaan(geen foutmelding-
+        // %d is ene placeholder voor ene decimal getal
+        // minCapacity neemt dan die plek over
+        logger.info(String.format("venueList--min=%d",minCapacity));
         // Haal alle venues op uit de database
-       final Iterable<Venue> venues = venueRepository.findAll();
+        //De methode die we in de venueRepository hebben gemaakt roepen we hier uit
+        // we hebben het over findBy filter
+       final Iterable<Venue> venues = venueRepository.findByFilter(minCapacity,maxCapacity);
+       long nrOfVenues = venueRepository.count();
         model.addAttribute("venues", venues);
         return "venuelist";
     }
