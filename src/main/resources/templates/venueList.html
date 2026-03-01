@@ -68,6 +68,132 @@ filters
                         >
                         <span class="input-group-text">km maximum</span>
                     </div>
+                    <div class="col-12 p-1">
+                        <h5>eten mogelijk</h5>
+                    </div>
+                    <div class="row g-0">
+                        <div class="col-4 p-1">
+                        <div class="input-group p-1">
+                            <div class="input-group-text">
+                                <input type="radio"
+                                       aria-label="maakt niet uit"
+                                       name="filterFood"
+                                       class="form-check-input mt-0"
+                                        value=""
+                                        th:checked="${param.filterFood == null or param.filterFood[0] == ''}">
+                            </div>
+                            <span class="input-group-text">maakt niet uit</span>
+                        </div>
+                    </div>
+
+                        <div class="col-4 p-1">
+                            <div class="input-group p-1">
+                                <div class="input-group-text">
+                                    <input type="radio"
+                                           aria-label="ja"
+                                           name="filterFood"
+                                           value="true"
+                                           th:checked="${param.filterFood !=null and param.filterFood[0] == 'true'}"
+                                           class="form-check-input mt-0">
+                                    <!--Zet dit vinkje aan alleen als de gebruiker op 'ja' heeft geklikt--->
+                                </div>
+                                <span class="input-group-text">ja</span>
+                            </div>
+                        </div>
+
+                        <div class="col-4 p-1">
+                            <div class="input-group p-1">
+                                <div class="input-group-text">
+                                    <input type="radio"
+                                           aria-label="nee"
+                                           name="filterFood"
+                                           value="false"
+                                           th:checked="${param.filterFood != null and param.filterFood[0] == 'false'}"
+                                           class="form-check-input mt-0">
+                                </div>
+                                <span class="input-group-text">nee</span></div>
+                        </div>
+                    </div>
+                    <div class="row g-0 border rounded mt-3">
+                        <div class="col-12 p-1">
+                            <h5>binnen</h5>
+                        </div>
+                        <div class="col-4 p1">
+                            <div class="input-group p-1">
+                                <div class="input-group-text">
+                                    <input type="radio"
+                                    aria-label="maakt niet uit"
+                                    value=""
+                                    class="form-check-input mt-0"
+                                    name="filterInside">
+                                </div>
+                                <span class="input-group-text">maakt niet uit</span>
+                            </div>
+                        </div>
+                        <div class="col-4 p1">
+                            <div class="input-group p-1">
+                                <div class="input-group-text">
+                                    <input type="radio"
+                                           aria-label="maakt niet uit"
+                                           value="true"
+                                           class="form-check-input mt-0"
+                                           name="filterInside">
+                                </div>
+                                <span class="input-group-text">ja</span>
+                            </div>
+                        </div>
+                        <div class="col-4 p1">
+                            <div class="input-group p-1">
+                                <div class="input-group-text">
+                                    <input type="radio"
+                                           aria-label="maakt niet uit"
+                                           value="false"
+                                           class="form-check-input mt-0"
+                                           name="filterInside">
+                                </div>
+                                <span class="input-group-text">nee</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row g-0 border rounded mt-3">
+                        <div class="col-12 p-1">
+                            <h5>buiten</h5>
+                        </div>
+                        <div class="col-4 p1">
+                            <div class="input-group p-1">
+                                <div class="input-group-text">
+                                    <input type="radio"
+                                           aria-label="maakt niet uit"
+                                           value=""
+                                           class="form-check-input mt-0"
+                                           name="filterOutside">
+                                </div>
+                                <span class="input-group-text">maakt niet uit</span>
+                            </div>
+                        </div> <div class="col-4 p1">
+                        <div class="input-group p-1">
+                            <div class="input-group-text">
+                                <input type="radio"
+                                       aria-label="ja"
+                                       value="true"
+                                       class="form-check-input mt-0"
+                                       name="filterOutside">
+                            </div>
+                            <span class="input-group-text">ja</span>
+                        </div>
+                    </div> <div class="col-4 p1">
+                        <div class="input-group p-1">
+                            <div class="input-group-text">
+                                <input type="radio"
+                                       aria-label="nee"
+                                       value="false"
+                                       class="form-check-input mt-0"
+                                       name="filterOutside">
+                            </div>
+                            <span class="input-group-text">nee</span>
+                        </div>
+                    </div>
+                    </div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>

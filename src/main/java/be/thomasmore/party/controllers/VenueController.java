@@ -64,7 +64,10 @@ public class VenueController {
     public String venueList(Model model,
                             @RequestParam(required = false) Integer minCapacity,
                             @RequestParam(required = false) Integer maxCapacity,
-                            @RequestParam(required = false) Integer maxDistance) {
+                            @RequestParam(required = false) Integer maxDistance,
+                            @RequestParam(required = false) Boolean filterFood,
+                            @RequestParam(required = false) Boolean filterInside,
+                            @RequestParam(required = false) Boolean filterOutside) {
         //Dit geeft aan dat het om een informatief bericht gaan(geen foutmelding-
         // %d is ene placeholder voor ene decimal getal
         // minCapacity neemt dan die plek over
@@ -76,10 +79,11 @@ public class VenueController {
 //       long nrOfVenues = venueRepository.count();
 
         // Gebruik %s om NullPointerExceptions te voorkomen als minCapacity null is
-        logger.info(String.format("venueList--min=%s, max=%s, maxDistance=%s", minCapacity, maxCapacity, maxDistance));
+        logger.info(String.format("venueList--min=%s, max=%s, maxDistance=%s, food=%s, inside=%s, outside=%s",
+                minCapacity, maxCapacity, maxDistance,filterFood,filterInside,filterOutside));
 
        // Voer de filter uit
-        List<Venue> venues = venueRepository.findByFilter(minCapacity,maxCapacity,maxDistance);
+        List<Venue> venues = venueRepository.findByFilter(minCapacity,maxCapacity,maxDistance,filterFood,filterInside,filterOutside);
 
         //Voeg data toe aan het model
         model.addAttribute("venues", venues);
@@ -91,7 +95,9 @@ public class VenueController {
         model.addAttribute("minCapacity", minCapacity);
         model.addAttribute("maxCapacity", maxCapacity);
         model.addAttribute("maxDistance", maxDistance);
-
+        model.addAttribute("filterFood", filterFood);
+        model.addAttribute("filterInside", filterInside);
+        model.addAttribute("filterOutside", filterOutside);
         return "venuelist";
     }
 
