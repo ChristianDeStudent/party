@@ -13,6 +13,17 @@
 <!---Main---->
 <div class="container">
     <h1>Onze Artiesten</h1>
+    <p class="text-muted ms-2" th:text="|${artists.size()} artiesten gevonden|"></p>
+    <form th:action="@{/artistlist}"
+          method="get"
+          class="d-flex justify-content-end mb-3">
+        <input type="text"
+                name="keyword"
+                th:value="${param.keyword}"
+                placeholder="Zoek artiest..."
+                class="form-control w-25">
+        <button type="submit" class="btn btn-primary ms-2">zoek</button>
+    </form>
     <div class="row">
         <div th:each="artist : ${artists}"
              th:object="${artist}"
@@ -24,9 +35,7 @@
                     </div>
                     <img th:src="@{${artist.imageUrl}}" class="card-img-top" alt="Artist image">
                 </a>
-
             </div>
-
         </div>
     </div>
 </div>

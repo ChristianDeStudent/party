@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.Optional;
 
@@ -38,10 +39,17 @@ public class ArtistController {
         return "artistdetails";
     }
     @GetMapping("/artistlist")
-    public String getArtistList(Model model) {
+    public String getArtistList(Model model,
+                                @RequestParam(required = false) String keyword) {
     // Haal alle artiesten op uit de database
-        final Iterable<Artist> artists = artistRepository.findAll();
+        Iterable<Artist> artists;
+        if(keyword != null && !keyword.isEmpty()) {
+            artists = artistRepository.findByFilter(keyword);
+        } else {
+            artists = artistRepository.findAll();
+        }
         model.addAttribute("artists", artists);
+        model.addAttribute("keyword", keyword);
         return "artistlist";
     }
 
