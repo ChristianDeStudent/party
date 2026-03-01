@@ -45,7 +45,7 @@ filters
                                 <span class="input-group-text">personen</span>
                             </div>
                             <label class="form-label">maximum</label>
-                            <div class="input-grou">
+                            <div class="input-group">
                                 <input type="number"
                                         aria-label="maximum capaciteit"
                                         name="maxCapacity"
@@ -54,6 +54,19 @@ filters
                                 <span class="input-group-text">personen</span>
                             </div>
                         </div>
+                    </div>
+                    <div class="col-12 p-1">
+                        <h5>afstand van openbaar vervoer</h5>
+                    </div>
+                    <div class="input-group">
+                        <input type="number"
+                        aria-label="maximum afstand"
+                        name="maxDistance"
+                        th:value="${param.maxDistance}"
+                        class="form-control"
+                        placeholder="Max afstand"
+                        >
+                        <span class="input-group-text">km maximum</span>
                     </div>
                 </div>
                 <div class="modal-footer">

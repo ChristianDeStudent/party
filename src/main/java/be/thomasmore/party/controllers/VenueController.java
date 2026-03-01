@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestAttribute;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.util.List;
 import java.util.Optional;
 
 
@@ -62,17 +63,35 @@ public class VenueController {
     // Want een Integer kan wel null zijn.
     public String venueList(Model model,
                             @RequestParam(required = false) Integer minCapacity,
-                            @RequestParam(required = false) Integer maxCapacity) {
+                            @RequestParam(required = false) Integer maxCapacity,
+                            @RequestParam(required = false) Integer maxDistance) {
         //Dit geeft aan dat het om een informatief bericht gaan(geen foutmelding-
         // %d is ene placeholder voor ene decimal getal
         // minCapacity neemt dan die plek over
-        logger.info(String.format("venueList--min=%d",minCapacity));
+//        logger.info(String.format("venueList--min=%d",minCapacity));
         // Haal alle venues op uit de database
         //De methode die we in de venueRepository hebben gemaakt roepen we hier uit
         // we hebben het over findBy filter
-       final Iterable<Venue> venues = venueRepository.findByFilter(minCapacity,maxCapacity);
-       long nrOfVenues = venueRepository.count();
+//       final Iterable<Venue> venues = venueRepository.findByFilter(minCapacity,maxCapacity,maxDistance);
+//       long nrOfVenues = venueRepository.count();
+
+        // Gebruik %s om NullPointerExceptions te voorkomen als minCapacity null is
+        logger.info(String.format("venueList--min=%s, max=%s, maxDistance=%s", minCapacity, maxCapacity, maxDistance));
+
+       // Voer de filter uit
+        List<Venue> venues = venueRepository.findByFilter(minCapacity,maxCapacity,maxDistance);
+
+        //Voeg data toe aan het model
         model.addAttribute("venues", venues);
+
+        //Tel de resultaten van de GEFILTERDE lijst, niet de hele databse
+        model.addAttribute("nrOfVenues", venues.size());
+
+        // Geef de filters terug zodat de inputvelden ingevuld blijven in de HTML
+        model.addAttribute("minCapacity", minCapacity);
+        model.addAttribute("maxCapacity", maxCapacity);
+        model.addAttribute("maxDistance", maxDistance);
+
         return "venuelist";
     }
 
