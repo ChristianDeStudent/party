@@ -28,7 +28,7 @@ public class Venue {
     private boolean outdoor;
     private boolean freeParkingAvailable;
     private String city;
-    private int distanceFromPublicTransportInKm;
+        private int distanceFromPublicTransportInKm;
     private String imageUrl;
 
     public void setId(Integer id) {
