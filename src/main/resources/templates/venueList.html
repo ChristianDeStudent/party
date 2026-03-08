@@ -213,9 +213,11 @@ filters
             class="btn d-flex flex-column h-100">
                 <h3 th:text="*{venueName}"></h3>
                 <p th:text="|max ${venue.capacity} personen|"></p>
-                <img th:src="@{${venue.imageUrl}}" alt="Venue image" class="img-fluid mx-0 px-0">        </div>
+                <img th:src="@{${venue.imageUrl}}" alt="Venue image" class="img-fluid mx-0 px-0">
+            </a>
+        </div>
 
-        </a>
+
         </div>
     </div>
 </div>

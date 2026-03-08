@@ -183,171 +183,128 @@ VALUES ('Sapphire Soiree', 45, null,
         '/img/party_sapphiresoiree.jpg');
 
 
-INSERT INTO PARTY
-(name, price_presale_in_eur, price_in_eur, extra_info, date, doors, venue_id, image_url)
-VALUES ('Big Spring Party', 6, 10, '1 cocktail included',
-        '2025-10-10', '10:00',
-        (SELECT id FROM VENUE WHERE venue_name = 'De Club'),
-        '/img/party_spring.jpg');
-
-INSERT INTO PARTY
-(name, price_presale_in_eur, price_in_eur, extra_info, date, doors, venue_id, image_url)
-VALUES ('Liberty 2025', null, 6, 'free vestiaire, viplounge',
-        '2025-10-25', '22:00',
-        (SELECT id FROM VENUE WHERE venue_name = 'De Loods'),
-        '/img/party_liberty.jpg');
-
-INSERT INTO PARTY
-(name, price_presale_in_eur, price_in_eur, extra_info, date, doors, venue_id, image_url)
-VALUES ('Uppercuts', null, null, ' ',
-        '2025-11-01', '21:00',
-        (SELECT id FROM VENUE WHERE venue_name = 'De Kuub'),
-        '/img/party_uppercuts.jpg');
-
-INSERT INTO PARTY
-(name, price_presale_in_eur, price_in_eur, extra_info, date, doors, venue_id, image_url)
-VALUES ('Zoetzuur', null, null, 'Zoete house / Zure techno',
-        '2025-11-08', '21:00',
-        (SELECT id FROM VENUE WHERE venue_name = 'De Kuub'),
-        '/img/party_zoetzuur.jpg');
-
-INSERT INTO PARTY
-(name, price_presale_in_eur, price_in_eur, extra_info, date, doors, venue_id, image_url)
-VALUES ('Oldies but Goldies', null, null, 'afterparty@home van THE BOX!',
-        '2025-10-31', '21:00',
-        (SELECT id FROM VENUE WHERE venue_name = 'De Kuub'),
-        '/img/party_oldiesbutgoldies.jpg');
-
-INSERT INTO PARTY
-(name, price_presale_in_eur, price_in_eur, extra_info, date, doors, venue_id, image_url)
-VALUES ('Sapphire Soiree', 45, null,
-        'JCI Mechelen bestaat 45 jaar! En dat saffieren jubileum vieren we graag in stijl met een galabal in Kasteel Tivoli. En jij kan erbij zijn!',
-        '2025-11-15', '21:00',
-        (SELECT id FROM VENUE WHERE venue_name = 'Tivoli'),
-        '/img/party_sapphiresoiree.jpg');
-
 -- the party animal users:
--- 1
-INSERT INTO ANIMAL (NAME, CITY, BIO, USERNAME)
-VALUES ('Gillende Giraf', 'Mechelen', 'maakt altijd veel lawaai', 'giraf');
-
--- 2
-INSERT INTO ANIMAL (NAME, CITY, BIO, USERNAME)
-VALUES ('Dorstige Dromedaris', 'Leest', 'drinkt alles op', 'dromedaris');
-
--- 3
-INSERT INTO ANIMAL (NAME, CITY, BIO, USERNAME)
-VALUES ('Dansende Draak', 'Hombeek', 'de stukken vliegen ervan af', 'draak');
-
--- 4
-INSERT INTO ANIMAL (NAME, CITY, BIO, USERNAME)
-VALUES ('Zingende Zebra', 'Leest', 'denkt dat hij goed kan zingen', 'zebra');
-
--- 5
-INSERT INTO ANIMAL (NAME, CITY, BIO, USERNAME)
-VALUES ('Drinkende Das', 'Hombeek', 'stopt niet', 'das');
-
--- 6
-INSERT INTO ANIMAL (NAME, CITY, BIO, USERNAME)
-VALUES ('Zuipende Zalm', 'Rumst', 'die wil je niet op je feest', 'zalm');
-
--- 7
-INSERT INTO ANIMAL (NAME, CITY, BIO, USERNAME)
-VALUES ('Feestende Flamingo', 'Mechelen', 'jeeeee', 'flamingo');
-
--- 8
-INSERT INTO ANIMAL (NAME, CITY, BIO, USERNAME)
-VALUES ('Kotsende Kikker', 'Mechelen', 'aie aie aie', 'kikker');
-
-
-INSERT INTO ANIMAL_PARTIES(ANIMALS_ID, PARTIES_ID)
-values (select id from animal where username = 'giraf',
-           select id from party where name = 'Big Spring Party');
-
-INSERT INTO ANIMAL_PARTIES(ANIMALS_ID, PARTIES_ID)
-values (select id from animal where username = 'dromedaris',
-           select id from party where name = 'Liberty 2025');
-
-INSERT INTO ANIMAL_PARTIES(ANIMALS_ID, PARTIES_ID)
-values (select id from animal where username = 'dromedaris',
-           select id from party where name = 'Uppercuts');
-
-INSERT INTO ANIMAL_PARTIES(ANIMALS_ID, PARTIES_ID)
-values (select id from animal where username = 'dromedaris',
-           select id from party where name = 'Zoetzuur');
-
-INSERT INTO ANIMAL_PARTIES(ANIMALS_ID, PARTIES_ID)
-values (select id from animal where username = 'dromedaris',
-           select id from party where name = 'Oldies but Goldies');
-
-INSERT INTO ANIMAL_PARTIES(ANIMALS_ID, PARTIES_ID)
-values (select id from animal where username = 'draak',
-           select id from party where name = 'Big Spring Party');
-
-INSERT INTO ANIMAL_PARTIES(ANIMALS_ID, PARTIES_ID)
-values (select id from animal where username = 'draak',
-           select id from party where name = 'Liberty 2025');
-
-INSERT INTO ANIMAL_PARTIES(ANIMALS_ID, PARTIES_ID)
-values (select id from animal where username = 'zebra',
-           select id from party where name = 'Uppercuts');
-
-INSERT INTO ANIMAL_PARTIES(ANIMALS_ID, PARTIES_ID)
-values (select id from animal where username = 'das',
-           select id from party where name = 'Zoetzuur');
-
-INSERT INTO ANIMAL_PARTIES(ANIMALS_ID, PARTIES_ID)
-values (select id from animal where username = 'das',
-           select id from party where name = 'Oldies but Goldies');
-
-INSERT INTO ANIMAL_PARTIES(ANIMALS_ID, PARTIES_ID)
-values (select id from animal where username = 'das',
-           select id from party where name = 'Big Spring Party');
-
-INSERT INTO ANIMAL_PARTIES(ANIMALS_ID, PARTIES_ID)
-values (select id from animal where username = 'das',
-           select id from party where name = 'Liberty 2025');
-
-INSERT INTO ANIMAL_PARTIES(ANIMALS_ID, PARTIES_ID)
-values (select id from animal where username = 'zalm',
-           select id from party where name = 'Uppercuts');
-
-INSERT INTO ANIMAL_PARTIES(ANIMALS_ID, PARTIES_ID)
-values (select id from animal where username = 'flamingo',
-           select id from party where name = 'Zoetzuur');
-
-INSERT INTO ANIMAL_PARTIES(ANIMALS_ID, PARTIES_ID)
-values (select id from animal where username = 'kikker',
-           select id from party where name = 'Big Spring Party');
-
-INSERT INTO ANIMAL_PARTIES(ANIMALS_ID, PARTIES_ID)
-values (select id from animal where username = 'kikker',
-           select id from party where name = 'Liberty 2025');
-
-INSERT INTO ANIMAL_PARTIES(ANIMALS_ID, PARTIES_ID)
-values (select id from animal where username = 'kikker',
-           select id from party where name = 'Uppercuts');
-
-INSERT INTO PARTY_ARTISTS (PARTIES_ID, ARTISTS_ID)
-VALUES ((SELECT id FROM party WHERE name = 'Big Spring Party'),
-        (SELECT id FROM artist WHERE artist_name = 'Discobaar a moeder'));
-
-INSERT INTO PARTY_ARTISTS (PARTIES_ID, ARTISTS_ID)
-VALUES ((SELECT id FROM party WHERE name = 'Big Spring Party'),
-        (SELECT id FROM artist WHERE artist_name = 'Radio Botanique'));
-
-INSERT INTO PARTY_ARTISTS (PARTIES_ID, ARTISTS_ID)
-VALUES ((SELECT id FROM party WHERE name = 'Liberty 2025'),
-        (SELECT id FROM artist WHERE artist_name = 'Radio Botanique'));
-
-INSERT INTO PARTY_ARTISTS (PARTIES_ID, ARTISTS_ID)
-VALUES ((SELECT id FROM party WHERE name = 'Uppercuts'),
-        (SELECT id FROM artist WHERE artist_name = 'DJ Koen'));
-
-INSERT INTO PARTY_ARTISTS (PARTIES_ID, ARTISTS_ID)
-VALUES ((SELECT id FROM party WHERE name = 'Uppercuts'),
-        (SELECT id FROM artist WHERE artist_name = 'Robbe Roels'));
-
-INSERT INTO PARTY_ARTISTS (PARTIES_ID, ARTISTS_ID)
-VALUES ((SELECT id FROM party WHERE name = 'Zoetzuur'),
-        (SELECT id FROM artist WHERE artist_name = 'Robbe Roels'));
+-- -- 1
+-- INSERT INTO ANIMAL (NAME, CITY, BIO, USERNAME)
+-- VALUES ('Gillende Giraf', 'Mechelen', 'maakt altijd veel lawaai', 'giraf');
+--
+-- -- 2
+-- INSERT INTO ANIMAL (NAME, CITY, BIO, USERNAME)
+-- VALUES ('Dorstige Dromedaris', 'Leest', 'drinkt alles op', 'dromedaris');
+--
+-- -- 3
+-- INSERT INTO ANIMAL (NAME, CITY, BIO, USERNAME)
+-- VALUES ('Dansende Draak', 'Hombeek', 'de stukken vliegen ervan af', 'draak');
+--
+-- -- 4
+-- INSERT INTO ANIMAL (NAME, CITY, BIO, USERNAME)
+-- VALUES ('Zingende Zebra', 'Leest', 'denkt dat hij goed kan zingen', 'zebra');
+--
+-- -- 5
+-- INSERT INTO ANIMAL (NAME, CITY, BIO, USERNAME)
+-- VALUES ('Drinkende Das', 'Hombeek', 'stopt niet', 'das');
+--
+-- -- 6
+-- INSERT INTO ANIMAL (NAME, CITY, BIO, USERNAME)
+-- VALUES ('Zuipende Zalm', 'Rumst', 'die wil je niet op je feest', 'zalm');
+--
+-- -- 7
+-- INSERT INTO ANIMAL (NAME, CITY, BIO, USERNAME)
+-- VALUES ('Feestende Flamingo', 'Mechelen', 'jeeeee', 'flamingo');
+--
+-- -- 8
+-- INSERT INTO ANIMAL (NAME, CITY, BIO, USERNAME)
+-- VALUES ('Kotsende Kikker', 'Mechelen', 'aie aie aie', 'kikker');
+--
+--
+-- INSERT INTO ANIMAL_PARTIES(ANIMALS_ID, PARTIES_ID)
+-- values (select id from animal where username = 'giraf',
+--            select id from party where name = 'Big Spring Party');
+--
+-- INSERT INTO ANIMAL_PARTIES(ANIMALS_ID, PARTIES_ID)
+-- values (select id from animal where username = 'dromedaris',
+--            select id from party where name = 'Liberty 2025');
+--
+-- INSERT INTO ANIMAL_PARTIES(ANIMALS_ID, PARTIES_ID)
+-- values (select id from animal where username = 'dromedaris',
+--            select id from party where name = 'Uppercuts');
+--
+-- INSERT INTO ANIMAL_PARTIES(ANIMALS_ID, PARTIES_ID)
+-- values (select id from animal where username = 'dromedaris',
+--            select id from party where name = 'Zoetzuur');
+--
+-- INSERT INTO ANIMAL_PARTIES(ANIMALS_ID, PARTIES_ID)
+-- values (select id from animal where username = 'dromedaris',
+--            select id from party where name = 'Oldies but Goldies');
+--
+-- INSERT INTO ANIMAL_PARTIES(ANIMALS_ID, PARTIES_ID)
+-- values (select id from animal where username = 'draak',
+--            select id from party where name = 'Big Spring Party');
+--
+-- INSERT INTO ANIMAL_PARTIES(ANIMALS_ID, PARTIES_ID)
+-- values (select id from animal where username = 'draak',
+--            select id from party where name = 'Liberty 2025');
+--
+-- INSERT INTO ANIMAL_PARTIES(ANIMALS_ID, PARTIES_ID)
+-- values (select id from animal where username = 'zebra',
+--            select id from party where name = 'Uppercuts');
+--
+-- INSERT INTO ANIMAL_PARTIES(ANIMALS_ID, PARTIES_ID)
+-- values (select id from animal where username = 'das',
+--            select id from party where name = 'Zoetzuur');
+--
+-- INSERT INTO ANIMAL_PARTIES(ANIMALS_ID, PARTIES_ID)
+-- values (select id from animal where username = 'das',
+--            select id from party where name = 'Oldies but Goldies');
+--
+-- INSERT INTO ANIMAL_PARTIES(ANIMALS_ID, PARTIES_ID)
+-- values (select id from animal where username = 'das',
+--            select id from party where name = 'Big Spring Party');
+--
+-- INSERT INTO ANIMAL_PARTIES(ANIMALS_ID, PARTIES_ID)
+-- values (select id from animal where username = 'das',
+--            select id from party where name = 'Liberty 2025');
+--
+-- INSERT INTO ANIMAL_PARTIES(ANIMALS_ID, PARTIES_ID)
+-- values (select id from animal where username = 'zalm',
+--            select id from party where name = 'Uppercuts');
+--
+-- INSERT INTO ANIMAL_PARTIES(ANIMALS_ID, PARTIES_ID)
+-- values (select id from animal where username = 'flamingo',
+--            select id from party where name = 'Zoetzuur');
+--
+-- INSERT INTO ANIMAL_PARTIES(ANIMALS_ID, PARTIES_ID)
+-- values (select id from animal where username = 'kikker',
+--            select id from party where name = 'Big Spring Party');
+--
+-- INSERT INTO ANIMAL_PARTIES(ANIMALS_ID, PARTIES_ID)
+-- values (select id from animal where username = 'kikker',
+--            select id from party where name = 'Liberty 2025');
+--
+-- INSERT INTO ANIMAL_PARTIES(ANIMALS_ID, PARTIES_ID)
+-- values (select id from animal where username = 'kikker',
+--            select id from party where name = 'Uppercuts');
+--
+-- INSERT INTO PARTY_ARTISTS (PARTIES_ID, ARTISTS_ID)
+-- VALUES ((SELECT id FROM party WHERE name = 'Big Spring Party'),
+--         (SELECT id FROM artist WHERE artist_name = 'Discobaar a moeder'));
+--
+-- INSERT INTO PARTY_ARTISTS (PARTIES_ID, ARTISTS_ID)
+-- VALUES ((SELECT id FROM party WHERE name = 'Big Spring Party'),
+--         (SELECT id FROM artist WHERE artist_name = 'Radio Botanique'));
+--
+-- INSERT INTO PARTY_ARTISTS (PARTIES_ID, ARTISTS_ID)
+-- VALUES ((SELECT id FROM party WHERE name = 'Liberty 2025'),
+--         (SELECT id FROM artist WHERE artist_name = 'Radio Botanique'));
+--
+-- INSERT INTO PARTY_ARTISTS (PARTIES_ID, ARTISTS_ID)
+-- VALUES ((SELECT id FROM party WHERE name = 'Uppercuts'),
+--         (SELECT id FROM artist WHERE artist_name = 'DJ Koen'));
+--
+-- INSERT INTO PARTY_ARTISTS (PARTIES_ID, ARTISTS_ID)
+-- VALUES ((SELECT id FROM party WHERE name = 'Uppercuts'),
+--         (SELECT id FROM artist WHERE artist_name = 'Robbe Roels'));
+--
+-- INSERT INTO PARTY_ARTISTS (PARTIES_ID, ARTISTS_ID)
+-- VALUES ((SELECT id FROM party WHERE name = 'Zoetzuur'),
+--         (SELECT id FROM artist WHERE artist_name = 'Robbe Roels'));

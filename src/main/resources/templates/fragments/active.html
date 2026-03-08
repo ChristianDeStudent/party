@@ -14,6 +14,11 @@
            class="nav-link"><p class="text-light p-0 m-0">home</p></a>
     </li>
     <li class="nav-item">
+    <a th:class="${currentUrl.startsWith('/partylist') ? 'nav-link active' : 'nav-link'}"
+        th:href="@{/partylist}"
+        class="nav-link text-light"><p class="text-light m-0 p-0">Partdetails</p></a>
+    </li>
+    <li class="nav-item">
         <a th:class="${currentUrl?.startsWith('/venuelist') ? 'nav-link active' : 'nav-link'}"
            th:href="@{/venuelist}"
            class="nav-link text-light"><p class="text-light m-0 p-0">Zaaldetails</p></a>

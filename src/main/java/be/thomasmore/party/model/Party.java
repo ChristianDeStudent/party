@@ -2,6 +2,7 @@ package be.thomasmore.party.model;
 
 import jakarta.persistence.*;
 
+import java.time.LocalDate;
 import java.time.LocalTime;
 
 @Entity
@@ -11,10 +12,11 @@ public class Party {
     private Integer id;
 
     private String name;
-    private int pricePresaleInEur;
-    private int priceInEur;
+    private Integer pricePresaleInEur;
+    private Integer priceInEur;
     private String extraInfo;
-    private LocalTime date,doors;
+    private LocalDate date;
+    private LocalTime doors;
     private String imageUrl;
     @ManyToOne
     @JoinColumn(name = "venue_id")
@@ -44,19 +46,19 @@ public class Party {
         this.name = name;
     }
 
-    public int getPricePresaleInEur() {
+    public Integer getPricePresaleInEur() {
         return pricePresaleInEur;
     }
 
-    public void setPricePresaleInEur(int pricePresaleInEur) {
+    public void setPricePresaleInEur(Integer pricePresaleInEur) {
         this.pricePresaleInEur = pricePresaleInEur;
     }
 
-    public int getPriceInEur() {
+    public Integer getPriceInEur() {
         return priceInEur;
     }
 
-    public void setPriceInEur(int priceInEur) {
+    public void setPriceInEur(Integer priceInEur) {
         this.priceInEur = priceInEur;
     }
 
@@ -68,11 +70,11 @@ public class Party {
         this.extraInfo = extraInfo;
     }
 
-    public LocalTime getDate() {
+    public LocalDate getDate() {
         return date;
     }
 
-    public void setDate(LocalTime date) {
+    public void setDate(LocalDate date) {
         this.date = date;
     }
 
