@@ -10,7 +10,42 @@
 <!---Header---->
 <div th:replace="~{fragments/header :: navbar}"></div>
 <!--Main-->
+<main class="container mt-5" th:object="${party}" th:if="${party}">
+    <div class="row mb-5">
+        <div class="col-12 d-flex justify-content-between align-items-center">
+            <a th:href="@{|/partydetails/${prevParty}|}" class="btn btn-outline-primary">&lt;</a>
+            <div class="text-center">
+                <h1 class="display-3" th:text="*{name}"></h1>
+                <p class="h5 text-muted" th:text="${#temporals.format(party.date, 'dd/MM/yyyy')}"></p>
+            </div>
+            <a th:href="@{|/partydetails/${nextParty}|}" class="btn btn-outline-primary">&gt;</a>
+        </div>
+    </div>
 
+    <div class="row g-0 shadow-sm rounded overflow-hidden">
+        <div class="col-md-7 p-4" style="background-color: #f8f9fa; min-height: 300px;">
+            <p class="mb-1">
+                <strong th:if="*{priceInEur == null && pricePresaleInEur == null}">Gratis Party!</strong>
+                <span th:if="*{pricePresaleInEur != null}" th:text="|*{pricePresaleInEur}€ (voorverkoop)|"></span>
+                <span th:if="*{pricePresaleInEur != null && priceInEur != null}"> / </span>
+                <span th:if="*{priceInEur != null}" th:text="|*{priceInEur}€ (aan de kassa)|"></span>
+            </p>
+
+            <p class="mb-4">deuren: <span th:text="${#temporals.format(party.doors, 'HH:mm')}"></span></p>
+
+            <div th:if="*{extraInfo != null && !extraInfo.isEmpty()}">
+                <p th:text="*{extraInfo}"></p>
+            </div>
+        </div>
+
+        <div class="col-md-5 d-flex align-items-center justify-content-center bg-white p-3">
+            <img th:if="*{imageUrl}" th:src="*{imageUrl}"
+                 class="img-fluid"
+                 alt="Party Poster"
+                 style="max-height: 350px;">
+        </div>
+    </div>
+</main>
 <!----Footer---->
 <div th:replace="~{fragments/footer :: footer}"></div>
 

@@ -31,7 +31,8 @@ public class VenueController {
     @GetMapping({"/venuedetails/{id}","/venuedetails"})
     // We voegen nu een nieuwe parameter toe @PathVariable int id
     // de id in de parameter moet hetzelfde zijn als de id in het url
-    public String venueDetails(Model model, @PathVariable(required = false) Integer id){
+    public String venueDetails(Model model,
+                               @PathVariable(required = false) Integer id){
         // required false betekent dat je geen id moet hebben om naar die page te kunnen gaan
         // pathvariable is dus optioneel
         // Gebruik venueFromDb (met 'Db' op het einde)
