@@ -16,7 +16,15 @@
             <a th:href="@{|/partydetails/${prevParty}|}" class="btn btn-outline-primary">&lt;</a>
             <div class="text-center">
                 <h1 class="display-3" th:text="*{name}"></h1>
-                <p class="h5 text-muted" th:text="${#temporals.format(party.date, 'dd/MM/yyyy')}"></p>
+                <p class="h5 text-muted" >
+                    <span th:text="${#temporals.format(party.date, 'dd/MM/yyyy')}">
+                        in
+                    </span>
+                    <a th:if="*{venue != null}"
+                        th:href="@{|/venuedetails/{id}(id=*{venue.id})|}"
+                        th:text="*{venue.venueName}">Venue</a>
+                </p>
+
             </div>
             <a th:href="@{|/partydetails/${nextParty}|}" class="btn btn-outline-primary">&gt;</a>
         </div>
@@ -31,10 +39,24 @@
                 <span th:if="*{priceInEur != null}" th:text="|*{priceInEur}€ (aan de kassa)|"></span>
             </p>
 
+            <p th:if="*{venue != null}" class="mb-1">
+                <span th:text="*{venue.city}"></span>
+                <span th:text="|(*{venue.distanceFromPublicTransportInKm} km van openbaar vervoer)|"></span>
+            </p>
+
             <p class="mb-4">deuren: <span th:text="${#temporals.format(party.doors, 'HH:mm')}"></span></p>
 
             <div th:if="*{extraInfo != null && !extraInfo.isEmpty()}">
                 <p th:text="*{extraInfo}"></p>
+            </div>
+
+            <div>
+                <h3><strong>Lineup:</strong></h3>
+                <div class="row">
+                <div th:each="artist : ${party.artists}" class="col border p-2 m-2 text-center">
+                    <a th:href="@{/artists/{id}}" th:text="${artist.artistName}"></a>
+                </div>
+                </div>
             </div>
         </div>
 

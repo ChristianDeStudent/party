@@ -2,6 +2,8 @@ package be.thomasmore.party.model;
 
 import jakarta.persistence.*;
 
+import java.util.List;
+
 //Dit is niet zomaar een klas, dit is een database-tabel
 //Standaard maakt JPA een tabel aan met de naam Venue
 //Elke keer dat jij een nieuw Venue object aanmaakt in java, kan dit als een rij in die tabel worden opgeslagen
@@ -30,6 +32,13 @@ public class Venue {
     private String city;
         private int distanceFromPublicTransportInKm;
     private String imageUrl;
+
+    @OneToMany(mappedBy = "venue")
+    private List<Party> parties;
+
+    public List<Party> getParties() {
+        return parties;
+    }
 
     public void setId(Integer id) {
         this.id = id;

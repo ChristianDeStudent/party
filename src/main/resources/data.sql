@@ -146,41 +146,66 @@ values ('Kryptonight',
 -- Party
 
 INSERT INTO PARTY
-(name, price_presale_in_eur, price_in_eur, extra_info, date, doors, image_url)
+(name, price_presale_in_eur, price_in_eur, extra_info, date, doors, image_url,venue_id)
 VALUES ('Big Spring Party', 6, 10, '1 cocktail included',
         '2025-10-10', '10:00',
-        '/img/party_spring.jpg');
+        '/img/party_spring.jpg',1);
 
 INSERT INTO PARTY
-(name, price_presale_in_eur, price_in_eur, extra_info, date, doors, image_url)
+(name, price_presale_in_eur, price_in_eur, extra_info, date, doors, image_url,venue_id)
 VALUES ('Liberty 2025', null, 6, 'free vestiaire, viplounge',
         '2025-10-25', '22:00',
-        '/img/party_liberty.jpg');
+        '/img/party_liberty.jpg',2);
 
 INSERT INTO PARTY
-(name, price_presale_in_eur, price_in_eur, extra_info, date, doors, image_url)
+(name, price_presale_in_eur, price_in_eur, extra_info, date, doors, image_url,venue_id)
 VALUES ('Uppercuts', null, null, ' ',
         '2025-11-01', '21:00',
-        '/img/party_uppercuts.jpg');
+        '/img/party_uppercuts.jpg',3);
 
 INSERT INTO PARTY
-(name, price_presale_in_eur, price_in_eur, extra_info, date, doors, image_url)
+(name, price_presale_in_eur, price_in_eur, extra_info, date, doors, image_url,venue_id)
 VALUES ('Zoetzuur', null, null, 'Zoete house / Zure techno',
         '2025-11-08', '21:00',
-        '/img/party_zoetzuur.jpg');
+        '/img/party_zoetzuur.jpg',4);
 
 INSERT INTO PARTY
-(name, price_presale_in_eur, price_in_eur, extra_info, date, doors, image_url)
+(name, price_presale_in_eur, price_in_eur, extra_info, date, doors, image_url,venue_id)
 VALUES ('Oldies but Goldies', null, null, 'afterparty@home van THE BOX!',
         '2025-10-31', '21:00',
-        '/img/party_oldiesbutgoldies.jpg');
+        '/img/party_oldiesbutgoldies.jpg',5);
 
 INSERT INTO PARTY
-(name, price_presale_in_eur, price_in_eur, extra_info, date, doors, image_url)
+(name, price_presale_in_eur, price_in_eur, extra_info, date, doors, image_url,venue_id)
 VALUES ('Sapphire Soiree', 45, null,
         'JCI Mechelen bestaat 45 jaar! En dat saffieren jubileum vieren we graag in stijl met een galabal in Kasteel Tivoli. En jij kan erbij zijn!',
         '2025-11-15', '21:00',
-        '/img/party_sapphiresoiree.jpg');
+        '/img/party_sapphiresoiree.jpg',10);
+
+-- joins
+INSERT INTO PARTY_ARTISTS (PARTIES_ID, ARTISTS_ID)
+VALUES ((SELECT id FROM party WHERE name = 'Big Spring Party'),
+        (SELECT id FROM artist WHERE artist_name = 'Discobaar a moeder'));
+
+INSERT INTO PARTY_ARTISTS (PARTIES_ID, ARTISTS_ID)
+VALUES ((SELECT id FROM party WHERE name = 'Big Spring Party'),
+        (SELECT id FROM artist WHERE artist_name = 'Radio Botanique'));
+
+INSERT INTO PARTY_ARTISTS (PARTIES_ID, ARTISTS_ID)
+VALUES ((SELECT id FROM party WHERE name = 'Liberty 2025'),
+        (SELECT id FROM artist WHERE artist_name = 'Radio Botanique'));
+
+INSERT INTO PARTY_ARTISTS (PARTIES_ID, ARTISTS_ID)
+VALUES ((SELECT id FROM party WHERE name = 'Uppercuts'),
+        (SELECT id FROM artist WHERE artist_name = 'DJ Koen'));
+
+INSERT INTO PARTY_ARTISTS (PARTIES_ID, ARTISTS_ID)
+VALUES ((SELECT id FROM party WHERE name = 'Uppercuts'),
+        (SELECT id FROM artist WHERE artist_name = 'Robbe Roels'));
+
+INSERT INTO PARTY_ARTISTS (PARTIES_ID, ARTISTS_ID)
+VALUES ((SELECT id FROM party WHERE name = 'Zoetzuur'),
+        (SELECT id FROM artist WHERE artist_name = 'Robbe Roels'));
 
 
 -- the party animal users:
